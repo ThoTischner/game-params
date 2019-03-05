@@ -1,0 +1,32 @@
+language: python
+python:
+- '3.7'
+matrix:
+  include:
+  - os: windows
+    language: sh
+    python: '3.7'
+    before_install:
+    - choco install python
+    - export PATH="/c/Python37:/c/Python37/Scripts:$PATH"
+    - python -m pip install --upgrade pip wheel
+install:
+- pip install PyInstaller PyQt5 PyYAML
+- pyinstaller --clean game-params.spec
+cache: pip
+git:
+  depth: false
+  submodules: false
+before_deploy:
+- git config --local user.name "Travis CI"
+- git config --local user.email "builds@travis-ci.com"
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+- git tag $TRAVIS_TAG
+deploy:
+  provider: releases
+  api_key:
+    secure: gDQNr3J6yn2WlmtmsAXssiffbJ2QFRAcVBNNAfciODfY4bGJdPqdDtTfk4SmASHYHbiGJJG/ivEKxGjH2EUgRSsRXX+2lgmJGoiKKyroqB9zS67gLgQz/9NfutRkfN4/RxsdCaCrlOv6X4x+kpTFX811CZxLyV5XrpezVDj6P54zPRIcHbPKBaphrE/YRqnlO0GWjOk1nB75CtHcIRFtrbpRdBdHPdskR3qOEJDzydnUBchDicAz1wxX4qWQVP68FpJ/tvLP496nOH19xuczLfBOpu2DGur8VMK8BparxmItOXH8Tiy42twsmyTmtg+gOsDM0ZwM8u7IviI1N+ZhbzhXKGr4sUNTL3ofWjve5laAxPwhbksEXYGQPQw/fqId1K74XL2NApP0dgMMtLrr7OuchgEGvNoRKFZtiwOoN1ERFWeBYbtWqfhOIWN52YkDDBlLu1mmiWiOIBRPSrFDheNR4kxkfetNke5I5tLyWGj+6V35jhjk0V/mPof8UIirmQIy14J2is6sM1nTPQTrbGwXKFJNv7s1uBaHgV9q1xLiRSeCT00llQPHAqvQSaEUb9JF8Ibx7jRgPMMOjdFgIEUObOAHiRNxUa8pZAEGzKD1Svyt9HwFuz37UE13VtmAIcz31emvg8EQy+J+tTWDQg+DV5hvVKTkryGIB2bn2Ks=
+  file: dist\game-params.exe
+  skip_cleanup: true
+  on:
+    repo: disappear89/game-params

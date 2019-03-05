@@ -1,0 +1,58 @@
+---
+main_conf:
+  - provider: origin
+    detect_type: home_dir
+    dir: \AppData\Roaming\Origin
+    config_type: xml
+    config_file: local_*xml
+    key: GameCommandLineArguments
+    value: value
+    separator: '#//'
+    games:
+      - name: Apex Legends
+        detect_type: reg
+        path: HKEY_LOCAL_MACHINE
+        rege_dir: SOFTWARE\Respawn\Apex
+        code: Origin.OFR.50.0002694_
+        params:
+          - name: FPS max
+            desc: ''
+            possible_value: '[0..999|unlimited]'
+            type: input
+            value: +fps_max
+          - name: No intro video
+            desc: ''
+            possible_value: ''
+            type: bool
+            value: -novid
+          - name: Disable V-Sync
+            desc: ''
+            possible_value: ''
+            type: bool
+            value: -forcenovsync
+          - name: Enable fullscreen
+            desc: ''
+            possible_value: ''
+            type: bool
+            value: -fullscreen
+          - name: Preload game resources
+            desc: 'May improve performance'
+            possible_value: ''
+            type: bool
+            value: -preload
+          - name: Windows task priority
+            desc: 'May improve performance'
+            possible_value: ''
+            type: bool
+            value: -high
+          - name: Monitor refresh rate
+            desc: ''
+            possible_value: '[0..200]'
+            type: input
+            value: -refresh
+          - name: Configure thread count
+            desc: ''
+            possible_value: '[0..64]'
+            type: input
+            value: -threads
+...
