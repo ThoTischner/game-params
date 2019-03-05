@@ -91,7 +91,6 @@ def app():
                                 @pyqtSlot()
                                 def set_clicked(index, param):
                                     # check if input field is filled
-                                    print(inputs[param['name']].text())
                                     if param['type'] == 'input' and not inputs[param['name']].text():
                                         value_msg = QMessageBox()
                                         value_msg.setIcon(QMessageBox.Warning)
