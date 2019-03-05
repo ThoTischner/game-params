@@ -1,6 +1,7 @@
 *
 !game-params.py
 !game-params.spec
+!game-params-debug.spec
 !config.yaml
 !LICENSE
 !LICENSE.qt
