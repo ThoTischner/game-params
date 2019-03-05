@@ -13,6 +13,7 @@ matrix:
 install:
 - pip install PyInstaller PyQt5 PyYAML
 - pyinstaller --clean game-params.spec
+- pyinstaller --clean game-params-debug.spec
 cache: pip
 git:
   depth: false
@@ -26,7 +27,9 @@ deploy:
   provider: releases
   api_key:
     secure: gDQNr3J6yn2WlmtmsAXssiffbJ2QFRAcVBNNAfciODfY4bGJdPqdDtTfk4SmASHYHbiGJJG/ivEKxGjH2EUgRSsRXX+2lgmJGoiKKyroqB9zS67gLgQz/9NfutRkfN4/RxsdCaCrlOv6X4x+kpTFX811CZxLyV5XrpezVDj6P54zPRIcHbPKBaphrE/YRqnlO0GWjOk1nB75CtHcIRFtrbpRdBdHPdskR3qOEJDzydnUBchDicAz1wxX4qWQVP68FpJ/tvLP496nOH19xuczLfBOpu2DGur8VMK8BparxmItOXH8Tiy42twsmyTmtg+gOsDM0ZwM8u7IviI1N+ZhbzhXKGr4sUNTL3ofWjve5laAxPwhbksEXYGQPQw/fqId1K74XL2NApP0dgMMtLrr7OuchgEGvNoRKFZtiwOoN1ERFWeBYbtWqfhOIWN52YkDDBlLu1mmiWiOIBRPSrFDheNR4kxkfetNke5I5tLyWGj+6V35jhjk0V/mPof8UIirmQIy14J2is6sM1nTPQTrbGwXKFJNv7s1uBaHgV9q1xLiRSeCT00llQPHAqvQSaEUb9JF8Ibx7jRgPMMOjdFgIEUObOAHiRNxUa8pZAEGzKD1Svyt9HwFuz37UE13VtmAIcz31emvg8EQy+J+tTWDQg+DV5hvVKTkryGIB2bn2Ks=
-  file: dist\game-params.exe
+  file:
+  - dist\game-params.exe
+  - dist\game-params-debug.exe
   skip_cleanup: true
   on:
     repo: disappear89/game-params
